@@ -3,10 +3,26 @@ from sqlalchemy import (
     String, MetaData, create_engine
 )
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
-username = 'user'
-engine = create_engine(f"postgresql://{username}@localhost:5432/postgres")
+import pg_conf
+
+engine = create_engine(pg_conf.SQLALCHEMY_DATABASE_URI)
 meta = MetaData()
 Base = declarative_base()
+
+# class Writer(db.Model):
+#     __tablename__ = 'writers'
+#
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String, nullable=False)
+#
+#
+# class Book(db.Model):
+#     __tablename__ = 'books'
+#
+#     id = db.Column(db.Integer, primary_key=True)
+#     author_id = db.Column(db.Integer, db.ForeignKey('writers.id'))
+#     name = db.Column(db.String, nullable=False)
+#     writer = db.relationship("Writer", back_populates="books")
 
 
 class Writer(Base):
